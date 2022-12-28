@@ -1,16 +1,33 @@
 <template>
   <form @submit.prevent="submitForm">
-    <h3>Create post</h3>
-    <div>
+    <h3 class="title">Create post</h3>
+    <div class="form-control">
       <label for="title"></label>
-      <input v-focus id="title" type="text" v-model.trim="title" />
+      <input
+        v-focus
+        id="title"
+        :disabled="!!error"
+        class="input"
+        type="text"
+        placeholder="title"
+        v-model.trim="title"
+      />
     </div>
-    <div>
+    <div lass="form-control">
       <label for="title"></label>
-      <textarea id="title" rows="5" v-model.trim="body"></textarea>
+      <textarea
+        class="textarea"
+        placeholder="text"
+        id="title"
+        :disabled="!!error"
+        rows="5"
+        v-model.trim="body"
+      ></textarea>
     </div>
-    <base-btn type="submit">create</base-btn>
-    <p v-if="error">{{ error }}</p>
+    <div class="actions">
+      <base-btn type="submit">create</base-btn>
+      <p class="error-message" v-if="error">{{ error }}</p>
+    </div>
   </form>
 </template>
 <script lang="ts">
@@ -38,6 +55,7 @@ export default defineComponent({
         this.resetForm();
       } else {
         this.error = 'Fill up the fields';
+        setTimeout(() => this.resetForm(), 2000);
       }
     },
     resetForm() {
@@ -48,4 +66,36 @@ export default defineComponent({
   },
 });
 </script>
-<style></style>
+<style scoped>
+.title {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-control {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input {
+  width: 100%;
+  height: 35px;
+  padding: 8px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 8px;
+}
+
+.actions {
+  text-align: right;
+  margin: 20px 0;
+}
+
+.error-message {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+}
+</style>

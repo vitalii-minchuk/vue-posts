@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import store from '../store';
 import HomeView from '../views/HomeView.vue';
 
 const router = createRouter({
@@ -22,6 +23,14 @@ const router = createRouter({
     },
   ],
   linkActiveClass: 'active-route-link',
+});
+
+router.beforeEach((to, from, next) => {
+  if (!store.state.posts.length && to.name === 'single-post') {
+    next('/posts');
+  } else {
+    next();
+  }
 });
 
 export default router;

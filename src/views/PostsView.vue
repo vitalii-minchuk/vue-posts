@@ -1,9 +1,14 @@
 <template>
   <div class="container">
     <section>
-      <div>
+      <div class="actions">
         <base-btn @click="openDialog">ad post +</base-btn>
-        <input type="text" ref="search" />
+        <input
+          class="search-input"
+          type="text"
+          @input="search"
+          placeholder="Search..."
+        />
       </div>
       <div>
         <h3 class="title">Post list</h3>
@@ -56,9 +61,9 @@ export default defineComponent({
     fetchPosts() {
       this.$store.dispatch(ActionTypes.GET_POSTS, this.currentPage);
     },
-    search() {
-      const searchStr = (this.$refs.search as HTMLInputElement).value;
-      console.log(searchStr);
+    search(event: Event) {
+      const searchStr = (event.target as HTMLInputElement).value;
+
       this.$store.dispatch(ActionTypes.HANDLE_SEARCH, searchStr);
     },
     openDialog() {
@@ -97,6 +102,18 @@ export default defineComponent({
 .title {
   text-align: center;
   margin: 20px 0;
+}
+
+.actions {
+  margin: 20px 0;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.search-input {
+  height: 35px;
+  padding: 8px;
 }
 
 .spinner-box {

@@ -18,6 +18,9 @@ const mutations: MutationTree<State> & Mutations = {
   [MutationTypes.ADD_NEW_POST](state, payload) {
     state.posts = [payload, ...state.posts];
   },
+  [MutationTypes.SET_SEARCH](state, payload) {
+    state.searchStr = payload;
+  },
   [MutationTypes.REMOVE_POST](state, payload) {
     state.posts = state.posts.filter((post) => post.id !== payload);
   },
