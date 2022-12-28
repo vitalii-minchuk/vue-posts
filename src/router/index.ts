@@ -14,6 +14,12 @@ const router = createRouter({
       name: 'posts',
       component: () => import('../views/PostsView.vue'),
     },
+    {
+      path: '/posts/:id',
+      name: 'single-post',
+      props: true,
+      component: () => import('../views/SinglePost.vue'),
+    },
   ],
   linkActiveClass: 'active-route-link',
 });
