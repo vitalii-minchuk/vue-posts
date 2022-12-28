@@ -1,5 +1,7 @@
-import type { State } from '../state';
+import type { Post, State } from '.';
 
 export type Getters = {
-  doubledCounter(state: State): number;
+  posts(state: State): Array<Post>;
+  loading(state: State): boolean;
+  fetchError(state: State): string;
 };

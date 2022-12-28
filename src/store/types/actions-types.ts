@@ -1,9 +1,11 @@
 import type { ActionContext } from 'vuex';
-import type { State } from '../state';
+import type { State } from '.';
 import type { Mutations } from './mutations-types';
 
 export enum ActionTypes {
-  GET_COUTNER = 'GET_COUTNER',
+  GET_POSTS = 'GET_POSTS',
+  CHANGE_IS_LOADING = 'CHANGE_IS_LOADING',
+  HANDLE_FETCH_ERROR = 'HANDLE_FETCH_ERROR',
 }
 
 type AugmentedActionContext = {
@@ -14,8 +16,16 @@ type AugmentedActionContext = {
 } & Omit<ActionContext<State, State>, 'commit'>;
 
 export interface Actions {
-  [ActionTypes.GET_COUTNER](
+  [ActionTypes.GET_POSTS](
     { commit }: AugmentedActionContext,
-    payload: number
-  ): Promise<number>;
+    payload: null
+  ): void;
+  [ActionTypes.CHANGE_IS_LOADING](
+    { commit }: AugmentedActionContext,
+    payload: boolean
+  ): void;
+  [ActionTypes.HANDLE_FETCH_ERROR](
+    { commit }: AugmentedActionContext,
+    payload: string
+  ): void;
 }

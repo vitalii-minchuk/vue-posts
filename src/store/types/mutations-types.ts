@@ -1,9 +1,13 @@
-import type { State } from '../state';
+import type { Post, State } from '.';
 
 export enum MutationTypes {
-  SET_COUNTER = 'SET_COUNTER',
+  SET_POSTS = 'SET_POSTS',
+  SET_IS_LOADING = 'SET_IS_LOADING',
+  SET_FETCH_ERROR = 'SET_FETCH_ERROR',
 }
 
 export type Mutations<S = State> = {
-  [MutationTypes.SET_COUNTER](state: S, payload: number): void;
+  [MutationTypes.SET_POSTS](state: S, payload: Array<Post>): void;
+  [MutationTypes.SET_IS_LOADING](state: S, payload: boolean): void;
+  [MutationTypes.SET_FETCH_ERROR](state: S, payload: string): void;
 };

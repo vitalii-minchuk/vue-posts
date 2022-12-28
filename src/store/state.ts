@@ -1,7 +1,9 @@
-const state = {
-  counter: 0,
-};
+import type { State } from './types';
 
-export type State = typeof state;
+const state: State = {
+  posts: [],
+  isLoading: false,
+  fetchError: '',
+};
 
 export default state;

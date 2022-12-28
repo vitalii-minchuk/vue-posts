@@ -7,7 +7,8 @@ import {
 import { actions } from './actions';
 import { getters } from './getters';
 import mutations from './mutations';
-import state, { type State } from './state';
+import state from './state';
+import type { State } from './types';
 import type { Actions } from './types/actions-types';
 import type { Getters } from './types/getters-types';
 import type { Mutations } from './types/mutations-types';
